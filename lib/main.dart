@@ -1,62 +1,45 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Hello Bessam ',
+    return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(title: Text('Hello layouts')),
         body: Center(
-          child: RandomWords(),
-        )
+          child: Text(
+            'Hello flutter layouts!',
+            style: TextStyle(fontSize: 30),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print('You rang ?');
+          },
+          child: Icon(Icons.lightbulb_outline),
+        ),
+        persistentFooterButtons: [
+          IconButton(
+              onPressed: () {
+                print('comment');
+              },
+              icon: Icon(Icons.add_comment)),
+          IconButton(
+              onPressed: () {
+                print('like');
+              },
+              icon: Icon(Icons.add_alarm)),
+          IconButton(
+              onPressed: () {
+                print('share');
+              },
+              icon: Icon(Icons.add_location))
+        ],
       ),
     );
   }
 }
-
-class RandomWords extends StatefulWidget {
-  const RandomWords({Key? key}) : super(key: key);
-
-  @override
-  _RandomWordsState createState() => _RandomWordsState();
-}
-
-class _RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Startup Name Generator')
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return const Divider(); /*2*/
-
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-  Widget _buildRow(WordPair pair) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-    );
-  }
-}
-
