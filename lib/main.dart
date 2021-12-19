@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,6 +9,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.cyan,
+        accentColor: Colors.yellow,
+        textTheme: TextTheme(
+          bodyText2: TextStyle(
+            fontSize: 30,
+            fontStyle: FontStyle.italic
+          )
+        )
+      ),
       home: Scaffold(
         appBar: AppBar(title: Text('Hello layouts')),
         body: Center(
