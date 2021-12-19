@@ -9,48 +9,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.cyan,
-        accentColor: Colors.yellow,
-        textTheme: TextTheme(
-          bodyText2: TextStyle(
-            fontSize: 30,
-            fontStyle: FontStyle.italic
-          )
-        )
-      ),
+      title: 'Container App',
       home: Scaffold(
-        appBar: AppBar(title: Text('Hello layouts')),
-        body: Center(
-          child: Text(
-            'Hello flutter layouts!',
-            style: TextStyle(fontSize: 30),
-          ),
+        appBar: AppBar(
+          title: Text('Container'),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('You rang ?');
-          },
-          child: Icon(Icons.lightbulb_outline),
-        ),
-        persistentFooterButtons: [
-          IconButton(
-              onPressed: () {
-                print('comment');
-              },
-              icon: Icon(Icons.add_comment)),
-          IconButton(
-              onPressed: () {
-                print('like');
-              },
-              icon: Icon(Icons.add_alarm)),
-          IconButton(
-              onPressed: () {
-                print('share');
-              },
-              icon: Icon(Icons.add_location))
-        ],
+        body: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(101),
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                // color: Colors.red,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  colors: [Colors.red, Colors.blue, Colors.green],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            )
+          ],
+        )
       ),
     );
   }
